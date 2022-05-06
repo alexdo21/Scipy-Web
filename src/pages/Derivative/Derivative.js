@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MonomialDerivative extends Component {
+class Derivative extends Component {
     constructor(props) {
         super(props)
         this.state = {functionInput: "", derivativeResult: ""}
@@ -41,6 +41,7 @@ class MonomialDerivative extends Component {
     }
 
     render() {
+        this.props.headerTitleCallback("Calculus | Derivative")
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -54,4 +55,4 @@ class MonomialDerivative extends Component {
     }
 }
 
-export default MonomialDerivative;
+export { Derivative };
