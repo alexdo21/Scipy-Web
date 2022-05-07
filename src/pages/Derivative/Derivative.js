@@ -25,7 +25,7 @@ class Derivative extends Component {
             body: JSON.stringify({expression: this.state.functionInput, wrt: "x"})
         }
 
-        await fetch("http://127.0.0.1:5000/calculus/monomial/symbolic-derivative", request)
+        await fetch("http://192.168.0.109:8000/calculus/symbolic-derivative", request)
         .then(response => {
             if (response.ok) {
                 return response.json()
