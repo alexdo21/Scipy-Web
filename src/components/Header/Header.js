@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuIcon } from "../MenuIcon"
+import { MenuIcon } from "../"
 import "./Header.css"
 
 function Header(props) {

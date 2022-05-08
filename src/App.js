@@ -2,9 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { LandingPage, Derivative, Integral, Determinant, Inverse } from "./pages";
-import { Sidebar } from "./components/Sidebar";
+import { Sidebar, Header } from "./components";
 import "./App.css"
-import { Header } from "./components/Header";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true)

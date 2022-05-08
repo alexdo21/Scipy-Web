@@ -1,58 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { fetchSymbolicDerivative } from "../../services"
+import { ExpressionLabel, ControlPanel, SolveButton, Solution } from "../../components"
+import "./Derivative.css"
 
-class Derivative extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {functionInput: "", derivativeResult: ""}
+function Derivative(props) {
+    props.headerTitleCallback("Calculus | Derivative")
+    const [functionInput, setFunctionInput] = React.useState("")
+    const [derivativeResult, setDerivativeResult] = React.useState("")
 
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    handleChange(event) {
-        this.setState({functionInput: event.target.value, derivativeResult: this.state.derivativeResult})
-    }
-
-    async handleSubmit(event) {
+    const handleChange = (event) => setFunctionInput(event.target.value)
+    const handleSubmit = (event) => {
         event.preventDefault()
-
-        const request = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*"
-            },
-            body: JSON.stringify({expression: this.state.functionInput, wrt: "x"})
-        }
-
-        await fetch("http://192.168.0.109:8000/calculus/symbolic-derivative", request)
-        .then(response => {
-            if (response.ok) {
-                return response.json()
-            }
-        })
-        .then(data => {
-            console.log(data.symbolicDerivative)
-            this.setState({functionInput: this.state.functionInput, derivativeResult: data.symbolicDerivative})
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        fetchSymbolicDerivative(functionInput, "x")
+        .then(response => setDerivativeResult(response))
+        .catch(errMsg => setDerivativeResult(errMsg))
     }
 
-    render() {
-        this.props.headerTitleCallback("Calculus | Derivative")
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" value={this.state.functionInput} onChange={this.handleChange} />
-                    <input type="submit" value="Submit" />
-                </form>
-                <textarea value={this.state.derivativeResult}>
-                </textarea>
+    return (
+        <div className="content-page-wrapper">
+            <div className="problem-wrapper">
+                <div className="calculus-user-interface">
+                    <ExpressionLabel />
+                    <ControlPanel />
+                    <SolveButton />
+                </div>
             </div>
-        );
-    }
+            <div className="solution-wrapper">
+                <Solution />
+            </div>
+        </div>
+    );
 }
+
+/* <form onSubmit={handleSubmit}>
+<input type="text" value={functionInput} onChange={handleChange} />
+<input type="submit" value="Submit" />
+</form>
+<textarea value={derivativeResult}></textarea> */
 
 export { Derivative };

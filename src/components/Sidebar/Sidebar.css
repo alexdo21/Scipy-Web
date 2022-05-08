@@ -1,8 +1,13 @@
 #sidebar {
     min-width: 305px;
     background: #97C3C3;
+}
+
+#sidebar-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
+    position: sticky;
+    top: 0;
 }
 
 #sidebar-close-button-wrapper {
@@ -42,6 +47,11 @@
     width: 85%;
     justify-content: space-between;
     border: none;
+}
+
+.expand-button-toggle-open {
+    position: relative;
+    top: -5px;
 }
 
 .expandable-menu {

@@ -5,37 +5,39 @@ import React from 'react';
 function Sidebar(props) {
     return (
         <nav id="sidebar">
-            <div id="sidebar-close-button-wrapper">
-                <button id="sidebar-close-button" onClick={props.closeSidebarCallback}>X</button>
+            <div id="sidebar-content">
+                <div id="sidebar-close-button-wrapper">
+                    <button id="sidebar-close-button" onClick={props.closeSidebarCallback}>X</button>
+                </div>
+                <ul id="sidebar-menu">
+                    <SidebarMenuItem
+                        name={"Calculus"}
+                        functions={[
+                            {
+                                name: "Derivative",
+                                route: "/calculus/derivative"
+                            },
+                            {
+                                name: "Integral",
+                                route: "/calculus/integral"
+                            }
+                        ]}
+                    />
+                    <SidebarMenuItem
+                        name={"Linear Algebra"}
+                        functions={[
+                            {
+                                name: "Determinant",
+                                route: "/linalg/determinant"
+                            },
+                            {
+                                name: "Inverse",
+                                route: "/linalg/inverse"
+                            }
+                        ]}
+                    />
+                </ul>
             </div>
-            <ul id="sidebar-menu">
-                <SidebarMenuItem
-                    name={"Calculus"}
-                    functions={[
-                        {
-                            name: "Derivative",
-                            route: "/calculus/derivative"
-                        },
-                        {
-                            name: "Integral",
-                            route: "/calculus/integral"
-                        }
-                    ]}
-                />
-                <SidebarMenuItem
-                    name={"Linear Algebra"}
-                    functions={[
-                        {
-                            name: "Determinant",
-                            route: "/linalg/determinant"
-                        },
-                        {
-                            name: "Inverse",
-                            route: "/linalg/inverse"
-                        }
-                    ]}
-                />
-            </ul>
         </nav>
     );
 }
@@ -49,7 +51,10 @@ function SidebarMenuItem(props) {
         <li className="sidebar-menu-item">
             <button className="expand-button" onClick={handleToggleExpandableMenu}>
                 {props.name}
-                <span>{expanded ? "\u2304" : "\u203A"}</span>
+                {expanded ? 
+                <span className="expand-button-toggle-open">{"\u2304"}</span> :
+                <span className="expand-button-toggle-close">{"\u203A"}</span>
+                }
             </button>
             <ul ref={contentElement} className="expandable-menu" style={expanded ? {height: contentElement.current.scrollHeight} : {height: "0px"}}>
                 {props.functions.map((func, index) => 
