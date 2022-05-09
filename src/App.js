@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import { MathJaxContext } from "better-react-mathjax"
 import { LandingPage, Derivative, Integral, Determinant, Inverse } from "./pages";
 import { Sidebar, Header } from "./components";
 import "./App.css"
@@ -19,19 +19,21 @@ function App() {
   
   return (
     <BrowserRouter>
-      <div id="app">
-        { isSidebarOpen ? <Sidebar closeSidebarCallback={handleCloseSidebar}/> : null}
-        <div id="content">
-          { headerVisible ? <Header isSidebarOpen={isSidebarOpen} openSidebarCallback={handleOpenSidebar} title={headerTitle}/> : null}
-          <Routes>
-            <Route exact path="/" element={<LandingPage headerTitleCallback={handleHeaderTitle}/>} />
-            <Route path="/calculus/derivative" element={<Derivative headerTitleCallback={handleHeaderTitle}/>} />
-            <Route path="/calculus/integral" element={<Integral headerTitleCallback={handleHeaderTitle}/>} />
-            <Route path="/linalg/determinant" element={<Determinant headerTitleCallback={handleHeaderTitle}/>} />
-            <Route path="/linalg/inverse" element={<Inverse headerTitleCallback={handleHeaderTitle}/>} />
-          </Routes>
+      <MathJaxContext>
+        <div id="app">
+          { isSidebarOpen ? <Sidebar closeSidebarCallback={handleCloseSidebar}/> : null}
+          <div id="content">
+            { headerVisible ? <Header isSidebarOpen={isSidebarOpen} openSidebarCallback={handleOpenSidebar} title={headerTitle}/> : null}
+            <Routes>
+              <Route exact path="/" element={<LandingPage headerTitleCallback={handleHeaderTitle}/>} />
+              <Route path="/calculus/derivative" element={<Derivative headerTitleCallback={handleHeaderTitle}/>} />
+              <Route path="/calculus/integral" element={<Integral headerTitleCallback={handleHeaderTitle}/>} />
+              <Route path="/linalg/determinant" element={<Determinant headerTitleCallback={handleHeaderTitle}/>} />
+              <Route path="/linalg/inverse" element={<Inverse headerTitleCallback={handleHeaderTitle}/>} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      </MathJaxContext>
     </BrowserRouter>
   );
 }

@@ -11,15 +11,11 @@
 
 .content-page-wrapper {
     display: flex;
-    gap: 137px;
 }
 
 .problem-wrapper {
     width: 50%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding-top: 130px;
 }
 
 .solution-wrapper {
@@ -31,7 +27,10 @@
 }
 
 .calculus-user-interface {
+    width: 100%;
+    padding-top: 130px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 42px;
 }

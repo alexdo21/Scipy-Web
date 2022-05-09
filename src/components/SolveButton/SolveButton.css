@@ -1,0 +1,17 @@
+.solve-button-wrapper {
+    width: 30%;
+    height: 40px;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    display: flex;
+}
+
+.solve-button {
+    padding: 0;
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: #ADBBBB;
+    font-size: 24px;
+    cursor: pointer;
+}

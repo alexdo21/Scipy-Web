@@ -1,4 +1,5 @@
 import React from 'react';
+import "./SolveButton.css"
 
 function SolveButton(props) {
     return (

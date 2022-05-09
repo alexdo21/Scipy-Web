@@ -1,9 +1,14 @@
 .expression-wrapper {
-    width: 431px;
+    width: 60%;
     height: 100px;
     background-color: #ADBBBB;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
 
-    font-size: 24px;
+.expression-label-latex {
+    padding-left: 16px;
+    font-size: 50px;
     color: white;
-    border-radius: 11.6px;
 }
