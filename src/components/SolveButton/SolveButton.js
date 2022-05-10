@@ -1,10 +1,10 @@
 import React from 'react';
 import "./SolveButton.css"
 
-function SolveButton(props) {
+function SolveButton({buttonTitle, handleSolveCallback}) {
     return (
         <div className="solve-button-wrapper">
-            <button className="solve-button">Derive</button>
+            <button className="solve-button" onClick={handleSolveCallback}>{buttonTitle}</button>
         </div>
     );
 }

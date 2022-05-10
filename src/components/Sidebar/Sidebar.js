@@ -2,12 +2,12 @@ import { Link } from "react-router-dom"
 import "./Sidebar.css"
 import React from 'react';
 
-function Sidebar(props) {
+function Sidebar({closeSidebarCallback}) {
     return (
         <nav id="sidebar">
             <div id="sidebar-content">
                 <div id="sidebar-close-button-wrapper">
-                    <button id="sidebar-close-button" onClick={props.closeSidebarCallback}>X</button>
+                    <button id="sidebar-close-button" onClick={closeSidebarCallback}>X</button>
                 </div>
                 <ul id="sidebar-menu">
                     <SidebarMenuItem
@@ -42,7 +42,7 @@ function Sidebar(props) {
     );
 }
 
-function SidebarMenuItem(props) {
+function SidebarMenuItem({name, functions}) {
     const [expanded, setExpanded] = React.useState(false)
     const contentElement = React.useRef()
     const handleToggleExpandableMenu = () => setExpanded((prevState) => !prevState)
@@ -50,14 +50,14 @@ function SidebarMenuItem(props) {
     return (
         <li className="sidebar-menu-item">
             <button className="expand-button" onClick={handleToggleExpandableMenu}>
-                {props.name}
+                {name}
                 {expanded ? 
                 <span className="expand-button-toggle-open">{"\u2304"}</span> :
                 <span className="expand-button-toggle-close">{"\u203A"}</span>
                 }
             </button>
             <ul ref={contentElement} className="expandable-menu" style={expanded ? {height: contentElement.current.scrollHeight} : {height: "0px"}}>
-                {props.functions.map((func, index) => 
+                {functions.map((func, index) => 
                     <li key={index} className="expandable-menu-cell">
                         <Link className="expandable-menu-cell-link" to={func.route}>{func.name}</Link>
                     </li>

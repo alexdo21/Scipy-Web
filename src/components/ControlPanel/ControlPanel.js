@@ -1,34 +1,61 @@
 import React from 'react';
 import { MathJax } from "better-react-mathjax"
+import { SegmentedControl } from '../';
 import "./ControlPanel.css"
-function ControlPanel(props) {
-    const [expression, setExpression] = React.useState("f(x)")
-    const [wrt, setWrt] = React.useState("")
-    const [atValue, setAtValue] = React.useState("")
-    const [from, setFrom] = React.useState("")
-    const [to, setTo] = React.useState("")
-
-
-    const handleExpressionChange = (event) => setExpression(event.target.value)
-    const handleWrtChange = (event) => setWrt(event.target.value)
-    const handleAtValueChange = (event) => setAtValue(event.target.value)
-    const handleFromChange = (event) => setFrom(event.target.value)
-    const handleToChange = (event) => setTo(event.target.value)
+function ControlPanel({
+    selectedPage, updateLatexCallback,
+    selectedType, setSelectedTypeCallback, 
+    expr, setExprCallback, 
+    wrt, setWrtCallback, 
+    atValue, setAtValueCallback, 
+    from, setFromCallback, 
+    to, setToCallback}) {
 
     return (
         <div className="control-panel-wrapper">
-            <div className="panel-row border-bottom selector">
-                <input className="selector-checkbox" type="checkbox"/>
-                <label className="selector-label" for="">
-                    <span className="selector-label-span">Symbolic</span>
-                </label>
+            <div className="panel-row segmented-control">
+                <SegmentedControl
+                    name="calculus-segmented-control"
+                    callback={(value) => {setSelectedTypeCallback(value); updateLatexCallback();}}
+                    controlRef={React.useRef()}
+                    defaultIndex={0}
+                    items={[
+                        {
+                            label: "Symbolic",
+                            value: "symbolic",
+                            ref: React.useRef()
+                        },
+                        {
+                            label: "Solve",
+                            value: "solve",
+                            ref: React.useRef()
+                        }
+                    ]}
+                />
             </div>
-            <div className="panel-row border-bottom expression-editor"><input className="control-input" value={expression} onChange={handleExpressionChange} /></div>
+            <div className="panel-row border-bottom expression-editor"><input className="control-input" value={expr} onChange={(event) => setExprCallback(event.target.value)} /></div>
             <div className="panel-row options-wrapper">
-                <div className="option border-right wrt-editor"><input className="control-input" value={wrt} placeHolder="with respect to" onChange={handleWrtChange} /></div>
-                <div className="option border-right atValueEditor"><input className="control-input" value={atValue} placeHolder="at value" onChange={handleAtValueChange} /></div>
-                <div className="option border-right fromEditor"><input className="control-input" value={from} placeHolder="from" onChange={handleFromChange} /></div>
-                <div className="option toEditor"><input className="control-input" value={to} placeHolder="to" onChange={handleToChange} /></div>
+                <div className={`option ${selectedType === "solve" ? "border-right" : null} wrt-editor`}>
+                    <input 
+                        className="control-input"
+                        value={wrt}
+                        placeholder={`${selectedPage === "integral" && selectedType === "solve" ? "wrt" : "with respect to"}`}
+                        onChange={(event) => setWrtCallback(event.target.value)} 
+                    />
+                </div>
+                {
+                    selectedPage === "derivative" && selectedType === "solve" ?
+                    <div className="option atValueEditor"><input className="control-input" value={atValue} placeholder="at value" onChange={(event) => setAtValueCallback(event.target.value)} /></div> 
+                    : null
+                }
+                {
+                    selectedPage === "integral" && selectedType === "solve" ? 
+                    <>
+                        <div className="option border-right fromEditor"><input className="control-input" value={from} placeholder="from" onChange={(event) => setFromCallback(event.target.value)} /></div>
+                        <div className="option toEditor"><input className="control-input" value={to} placeholder="to" onChange={(event) => setToCallback(event.target.value)} /></div>
+                    </>
+                    : null
+                }
             </div>
         </div>
     );

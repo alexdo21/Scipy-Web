@@ -24,84 +24,6 @@
     border-right: 1px solid #b7b7b7;
 }
 
-.control-input {
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    text-align: center;
-    font-size: 28px;
-    outline: none;
-}
-
-.selector {
-    background-color: #DDDDDD;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 240px;
-    text-align: center;
-    font-size: 18px;
-    letter-spacing: 1px;
-    position: relative;
-    padding-right: 120px;
-    position: relative;
-}
-
-.selector:before {
-    content: "Solve";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.selector-checkbox {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 2;
-}
-
-.selector-checkbox:checked + .selector-checkbox:before {
-    transform: translateX(120px);
-    transition: transform 300ms linear;
-}
-
-.selector-checkbox + .selector-label {
-    position: relative;
-    padding: 15px 0;
-    display: block;
-    user-select: none;
-    pointer-events: none;
-}
-
-.selector-checkbox + .selector-label:before {
-    content: "";
-    background-color: #97c3c3;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform: translateX(0);
-    transition: transform 300ms;
-}
-
-.selector-checkbox + .selector-label .selector-label-span {
-    position: relative;
-}
-  
 .options-wrapper {
     display: flex;
 }
@@ -112,4 +34,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.control-input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    outline: none;
 }

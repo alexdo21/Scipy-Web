@@ -1,0 +1,68 @@
+.segmented-control-wrapper {
+    --highlight-width: auto;
+    --highlight-x-pos: 0;
+    flex: 1;
+    display: flex;
+}
+
+.segments {
+    flex: 1;
+    display: inline-flex;
+    /* justify-content: space-between; */
+    background-color: #DDDDDD;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 500px;
+    padding: 2px;
+    /* margin: auto; */
+    overflow: hidden;
+    position: relative;
+}
+
+.segments input {
+    opacity: 0;
+    margin: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.segment {
+    width: 100%;
+    /* min-width: 120px; */
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.segment label {
+    cursor: pointer;
+    display: block;
+    padding: 20px;
+    transition: color 0.5s ease;
+}
+
+.segment.active label {
+}
+
+.segments::before {
+    content: "";
+    background-color: #97C3C3;
+    border-radius: 8px;
+    width: var(--highlight-width);
+    transform: translateX(var(--highlight-x-pos));
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 0;
+    z-index: 0;
+}
+
+.segments.ready::before {
+    transition: transform 0.3s ease, width 0.3s ease;
+}

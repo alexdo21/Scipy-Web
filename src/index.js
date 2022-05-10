@@ -4,10 +4,13 @@ import App from './App';
 import "./index.css"
 import reportWebVitals from './reportWebVitals';
 
+import { MathJaxContext } from "better-react-mathjax"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MathJaxContext>
+      <App />
+    </MathJaxContext>
   </React.StrictMode>,
   document.getElementById('root')
 );

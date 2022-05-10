@@ -1,10 +1,10 @@
 import React from 'react';
 import { MathJax } from "better-react-mathjax"
 import "./ExpressionLabel.css"
-function ExpressionLabel(props) {
+function ExpressionLabel({latex}) {
     return (
         <div className="expression-wrapper">
-            <MathJax className="expression-label-latex">{"\\(\\frac{\\mathrm{d}}{\\mathrm{d} x} f(x) \\)"}</MathJax>
+            <MathJax className="expression-label-latex">{latex}</MathJax>
             {/* \\(frac{\\mathrm{d} }{\\mathrm{d}\\) */}
         </div>
     );

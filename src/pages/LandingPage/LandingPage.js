@@ -1,7 +1,7 @@
 import React from 'react';
 import "./LandingPage.css"
-function LandingPage(props) {
-    props.headerTitleCallback("")
+function LandingPage({headerTitleCallback}) {
+    headerTitleCallback("")
 
     return (
         <div id="welcome-message-wrapper">
