@@ -16,8 +16,8 @@ function SegmentedControl({name, callback, controlRef, defaultIndex=0, items}) {
     }, [activeIndex, callback, controlRef, items])
 
     const onInputChange = (value, index) => {
-        setActiveIndex(index)
         callback(value, index)
+        setActiveIndex(index)
     }
 
     return (
@@ -25,7 +25,7 @@ function SegmentedControl({name, callback, controlRef, defaultIndex=0, items}) {
             <div className={`segments ${componentReady.current ? "ready" : "idle"}`}>
                 {items.map((item, index) => (
                     <div key={item.value} className={`segment ${index === activeIndex ? "active" : "inactive"}`} ref={item.ref}>
-                        <input 
+                        <input
                             type="radio"
                             value={item.value}
                             id={item.label}

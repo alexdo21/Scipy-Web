@@ -13,14 +13,12 @@ function Integral({headerTitleCallback}) {
     const [from, setFrom] = React.useState("a")
     const [to, setTo] = React.useState("b")
 
-    const [latex, setLatex] = React.useState()
+    const [integralProblem, setIntegralProblem] = React.useState("")
     const [integralResult, setIntegralResult] = React.useState("")
 
-    const updateLatex = () => {
-        selectedType === "symbolic" ?
-        setLatex(`\\(\\int \\! (${expr}) \\, \\mathrm{d} ${wrt}\\)`) : 
-        setLatex(`\\(\\int_{${from}}^{${to}} \\! (${expr}) \\, \\mathrm{d} ${wrt}\\)`)
-    }
+    React.useEffect(() => {
+        setIntegralResult("")
+    }, [expr, wrt, from, to])
 
     const handleIntegrate = (event) => {
         event.preventDefault()
@@ -37,20 +35,24 @@ function Integral({headerTitleCallback}) {
         <div className="content-page-wrapper">
             <div className="problem-wrapper">
                 <div className="calculus-user-interface">
-                    <ExpressionLabel latex={latex} />
+                    <ExpressionLabel
+                        selectedPage="integral" selectedType={selectedType}
+                        expr={expr} wrt={wrt} from={from} to={to}
+                        setProblemCallback={(value) => setIntegralProblem(value)}
+                    />
                     <ControlPanel 
                         selectedPage="integral"
-                        selectedType={selectedType} setSelectedTypeCallback={(value) => {setSelectedType(value); updateLatex()}}
-                        expr={expr} setExprCallback={(value) => {setExpr(value); updateLatex()}}
-                        wrt={wrt} setWrtCallback={(value) => {setWrt(value); updateLatex()}}
-                        from={from} setFromCallback={(value) => {setFrom(value); updateLatex()}}
-                        to={to} setToCallback={(value) => {setTo(value); updateLatex();}}
+                        selectedType={selectedType} setSelectedTypeCallback={(value) => setSelectedType(value)}
+                        expr={expr} setExprCallback={(event) => setExpr(event.target.value)}
+                        wrt={wrt} setWrtCallback={(event) => setWrt(event.target.value)}
+                        from={from} setFromCallback={(event) => setFrom(event.target.value)}
+                        to={to} setToCallback={(event) => setTo(event.target.value)}
                     />
                     <SolveButton buttonTitle="Integrate" handleSolveCallback={handleIntegrate} />
                 </div>
             </div>
             <div className="solution-wrapper">
-                <Solution integralResult={integralResult} />
+                <Solution problem={integralProblem} result={integralResult} />
             </div>
         </div>
     );

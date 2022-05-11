@@ -12,15 +12,13 @@ function Derivative({headerTitleCallback}) {
     const [wrt, setWrt] = React.useState("x")
     const [atValue, setAtValue] = React.useState("")
 
-    const [latex, setLatex] = React.useState(`\\(\\frac{\\mathrm{d}}{\\mathrm{d} ${wrt}} (${expr}) \\)`)
+    const [derivativeProblem, setDerivativeProblem] = React.useState("")
     const [derivativeResult, setDerivativeResult] = React.useState("")
 
-    const updateLatex = () => {
-        selectedType === "symbolic" ?
-        setLatex(`\\(\\frac{\\mathrm{d}}{\\mathrm{d} ${wrt}} (${expr}) \\)`) : 
-        setLatex(`\\(\\left. \\frac{\\mathrm{d} }{\\mathrm{d} ${wrt}} (${expr}) \\right\\vert_{${wrt}=${atValue}}\\)`)
-    }
-
+    React.useEffect(() => {
+        setDerivativeResult("")
+    }, [expr, wrt, atValue])
+    
     const handleDerive = (event) => {
         event.preventDefault()
         selectedType === "symbolic" ?
@@ -36,19 +34,23 @@ function Derivative({headerTitleCallback}) {
         <div className="content-page-wrapper">
             <div className="problem-wrapper">
                 <div className="calculus-user-interface">
-                    <ExpressionLabel latex={latex} />
+                    <ExpressionLabel
+                        selectedPage="derivative" selectedType={selectedType}
+                        expr={expr} wrt={wrt} atValue={atValue}
+                        setProblemCallback={(value) => setDerivativeProblem(value)}
+                    />
                     <ControlPanel 
-                        selectedPage="derivative" updateLatexCallback={() => updateLatex()}
-                        selectedType={selectedType} setSelectedTypeCallback={(value) => {setSelectedType(value); updateLatex();}}
-                        expr={expr} setExprCallback={(value) => {setExpr(value); updateLatex();}}
-                        wrt={wrt} setWrtCallback={(value) => {setWrt(value); updateLatex();}}
-                        atValue={atValue} setAtValueCallback={(value) => {setAtValue(value); updateLatex();}}
+                        selectedPage="derivative"
+                        selectedType={selectedType} setSelectedTypeCallback={(value) => setSelectedType(value)}
+                        expr={expr} setExprCallback={(event) => setExpr(event.target.value)}
+                        wrt={wrt} setWrtCallback={(event) => setWrt(event.target.value)}
+                        atValue={atValue} setAtValueCallback={(event) => setAtValue(event.target.value)}
                     />
                     <SolveButton buttonTitle="Derive" handleSolveCallback={handleDerive} />
                 </div>
             </div>
             <div className="solution-wrapper">
-                <Solution derivativeResult={derivativeResult} />
+                <Solution problem={derivativeProblem} result={derivativeResult} />
             </div>
         </div>
     );
