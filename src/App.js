@@ -6,18 +6,16 @@ import "./App.css"
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true)
-  const handleOpenSidebar = () => setIsSidebarOpen(true)
-  const handleCloseSidebar = () => setIsSidebarOpen(false)
-
+  
   const [headerTitle, setHeaderTitle] = React.useState("")
   const handleHeaderTitle = (title) => setHeaderTitle(title)
   
   return (
     <BrowserRouter>
       <div id="app">
-        { isSidebarOpen ? <Sidebar closeSidebarCallback={handleCloseSidebar}/> : null}
+        { isSidebarOpen ? <Sidebar closeSidebarCallback={() => setIsSidebarOpen(false)}/> : null}
         <div id="content">
-          <Header isSidebarOpen={isSidebarOpen} openSidebarCallback={handleOpenSidebar} title={headerTitle}/>
+          <Header isSidebarOpen={isSidebarOpen} openSidebarCallback={() => setIsSidebarOpen(true)} title={headerTitle}/>
           <Routes>
             <Route exact path="/" element={<LandingPage headerTitleCallback={handleHeaderTitle}/>} />
             <Route path="/calculus/derivative" element={<Derivative headerTitleCallback={handleHeaderTitle}/>} />

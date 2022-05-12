@@ -12,3 +12,4 @@ const REQUEST = {
 
 export { CALCULUS_ENDPOINT, LINEAR_ALGEBRA_ENDPOINT, REQUEST }
 export { fetchSymbolicDerivative, fetchSolveDerivative, fetchSymbolicIntegral, fetchSolveIntegral } from "./Calculus"
+export { fetchMatrixDeterminant, fetchMatrixInverse, getValidSquareMatrixFromEditor, getMatrixLatex } from "./LinearAlgebra"

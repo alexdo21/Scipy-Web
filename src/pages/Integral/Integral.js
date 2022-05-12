@@ -34,7 +34,7 @@ function Integral({headerTitleCallback}) {
     return (
         <div className="content-page-wrapper">
             <div className="problem-wrapper">
-                <div className="calculus-user-interface">
+                <div className="user-interface">
                     <ExpressionLabel
                         selectedPage="integral" selectedType={selectedType}
                         expr={expr} wrt={wrt} from={from} to={to}

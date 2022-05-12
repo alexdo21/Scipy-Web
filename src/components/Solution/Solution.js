@@ -14,9 +14,9 @@ function Solution({problem, result}) {
                             <MathJax className="latex" inline="true">{problem}</MathJax>
                         </div>
                         <div className="display arrow-wrapper" style={{paddingLeft: "5px"}}>
-                            <div class="arrow">
-                                <div class="line"></div>
-                                <div class="point"></div>
+                            <div className="arrow">
+                                <div className="line"></div>
+                                <div className="point"></div>
                             </div>
                         </div>
                         <div className="display solution-result">

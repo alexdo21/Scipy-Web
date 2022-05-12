@@ -33,7 +33,7 @@ function Derivative({headerTitleCallback}) {
     return (
         <div className="content-page-wrapper">
             <div className="problem-wrapper">
-                <div className="calculus-user-interface">
+                <div className="user-interface">
                     <ExpressionLabel
                         selectedPage="derivative" selectedType={selectedType}
                         expr={expr} wrt={wrt} atValue={atValue}
