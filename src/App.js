@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <div id="app">
-        { isSidebarOpen ? <Sidebar closeSidebarCallback={() => setIsSidebarOpen(false)}/> : null}
+        <Sidebar isSidebarOpen={isSidebarOpen} closeSidebarCallback={() => setIsSidebarOpen(false)}/>
         <div id="content">
           <Header isSidebarOpen={isSidebarOpen} openSidebarCallback={() => setIsSidebarOpen(true)} title={headerTitle}/>
           <Routes>

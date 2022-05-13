@@ -28,12 +28,12 @@ const getValidSquareMatrixFromEditor = (rows, cols) => {
     let inputs = document.querySelectorAll("#matrix-form input")
     let matrix = [...Array(rows)].map(x => Array(cols).fill(0))
     for (let i = 0; i < rows * cols; i++) {
-        let entry = inputs[i]
-        if (!(entry && entry.value)) {
+        if (!(inputs[i] && inputs[i].value)) {
             alert("All matrix entries have be filled and be integers")
             return
         }
-        matrix[Math.floor(i / rows)][i % rows] = Number(entry.value).toFixed(2)
+        let entry = Number(inputs[i].value)
+        matrix[Math.floor(i / rows)][i % rows] = entry.toFixed(2)
     }
     return matrix
 }
@@ -45,7 +45,9 @@ const getMatrixLatex = (matrix) => {
     for (let i = 0; i < matrix.length; i++) {
         let entries = []
         for (let j = 0; j < matrix[i].length; j++) {
-            entries.push(Number(matrix[i][j]).toFixed(2).toString())
+            let entry = Number(matrix[i][j])
+            entry = Math.abs(entry) < 100 ? entry.toFixed(2).toString() : Number.parseFloat(entry).toExponential(1)
+            entries.push(entry)
         }
         rows.push(entries.join("&"))
     }

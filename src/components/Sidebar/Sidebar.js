@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
-import "./Sidebar.css"
 import React from 'react';
+import "./Sidebar.css"
 
-function Sidebar({closeSidebarCallback}) {
+function Sidebar({isSidebarOpen, closeSidebarCallback}) {
     return (
         <nav id="sidebar">
-            <div id="sidebar-content">
+            <div id="sidebar-content" className={isSidebarOpen ? "sidebar-open" : "sidebar-close"}>
                 <div id="sidebar-close-button-wrapper">
                     <button id="sidebar-close-button" onClick={closeSidebarCallback}>X</button>
                 </div>
@@ -51,12 +51,9 @@ function SidebarMenuItem({name, functions}) {
         <li className="sidebar-menu-item">
             <button className="expand-button" onClick={handleToggleExpandableMenu}>
                 {name}
-                {expanded ? 
-                <span className="expand-button-toggle-open">{"\u2304"}</span> :
-                <span className="expand-button-toggle-close">{"\u203A"}</span>
-                }
+                <span className={expanded ? `expand-button-toggle-open` : `expand-button-toggle-close`}>{"\u203A"}</span>
             </button>
-            <ul ref={contentElement} className="expandable-menu" style={expanded ? {height: contentElement.current.scrollHeight} : {height: "0px"}}>
+            <ul ref={contentElement} className="expandable-menu" style={expanded ? {maxHeight: contentElement.current.scrollHeight, transition: "all 0.3s ease-in-out"} : {maxHeight: "0px", transition: "all 0.3s ease-in-out"}}>
                 {functions.map((func, index) => 
                     <li key={index} className="expandable-menu-cell">
                         <Link className="expandable-menu-cell-link" to={func.route}>{func.name}</Link>

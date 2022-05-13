@@ -1,7 +1,9 @@
 #app {
+    margin: auto;
     display: flex;
-    /* max-width: 1440px; */
+    width: 1728px;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 #content {
@@ -15,14 +17,13 @@
 }
 
 .problem-wrapper {
-    width: 50%;
-    height: 100vh;
+    width: 720px;
 }
 
 .solution-wrapper {
-    width: 50%;
-    height: 100vh;
+    width: 720px;
     display: flex;
+    justify-content: center;
     padding-top: 130px;
 }
 
@@ -33,4 +34,17 @@
     flex-direction: column;
     align-items: center;
     gap: 42px;
+}
+
+@media (max-width: 1024px) {
+    #app {
+        width: 1024px;
+    }
+    .content-page-wrapper { 
+        flex-direction: column;
+    }
+
+    .solution-wrapper {
+        height: 60vh;
+    }
 }

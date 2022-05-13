@@ -26,7 +26,7 @@ function Derivative({headerTitleCallback}) {
         .then(response => setDerivativeResult(response))
         .catch(errMsg => setDerivativeResult(errMsg)) :
         fetchSolveDerivative(expr, wrt, atValue)
-        .then(response => setDerivativeResult(response))
+        .then(response => setDerivativeResult(Number.parseFloat(response).toFixed(2).toString()))
         .catch(errMsg => setDerivativeResult(errMsg))
     }
 

@@ -27,7 +27,7 @@ function Integral({headerTitleCallback}) {
         .then(response => setIntegralResult(response))
         .catch(errMsg => setIntegralResult(errMsg)) :
         fetchSolveIntegral(expr, wrt, from, to)
-        .then(response => setIntegralResult(response))
+        .then(response => setIntegralResult(Number.parseFloat(response).toFixed(2).toString()))
         .catch(errMsg => setIntegralResult(errMsg))
     }
 

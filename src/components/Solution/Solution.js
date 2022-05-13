@@ -11,16 +11,16 @@ function Solution({problem, result}) {
                     result === "" ? null : 
                     <>
                         <div className="display problem-expr">
-                            <MathJax className="latex" inline="true">{problem}</MathJax>
+                            <MathJax inline="true" style={{fontSize: `${problem.length > 70 || result.length > 70 ? 100 : 200}%`}}>{problem}</MathJax>
                         </div>
-                        <div className="display arrow-wrapper" style={{paddingLeft: "5px"}}>
+                        <div className="display arrow-wrapper">
                             <div className="arrow">
                                 <div className="line"></div>
                                 <div className="point"></div>
                             </div>
                         </div>
                         <div className="display solution-result">
-                            <MathJax className="latex" inline="true">{`\\(${result}\\)`}</MathJax>
+                            <MathJax inline="true" style={{fontSize: `${problem.length > 70 || result.length > 70 ? 100 : 200}%`}}>{`\\(${result}\\)`}</MathJax>
                         </div>
                     </>
                 }

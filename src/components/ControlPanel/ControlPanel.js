@@ -37,21 +37,20 @@ function ControlPanel({
                 <div className={`option ${selectedType === "solve" ? "border-right" : null} wrt-editor`}>
                     <input 
                         className="control-input"
-                        value={wrt}
                         placeholder={`${selectedPage === "integral" && selectedType === "solve" ? "wrt" : "with respect to"}`}
                         onChange={setWrtCallback} 
                     />
                 </div>
                 {
                     selectedPage === "derivative" && selectedType === "solve" ?
-                    <div className="option atValueEditor"><input className="control-input" value={atValue} placeholder="at value" onChange={setAtValueCallback} /></div> 
+                    <div className="option atValueEditor"><input className="control-input" placeholder="at value" onChange={setAtValueCallback} /></div> 
                     : null
                 }
                 {
                     selectedPage === "integral" && selectedType === "solve" ? 
                     <>
-                        <div className="option border-right fromEditor"><input className="control-input" value={from} placeholder="from" onChange={setFromCallback} /></div>
-                        <div className="option toEditor"><input className="control-input" value={to} placeholder="to" onChange={setToCallback} /></div>
+                        <div className="option border-right fromEditor"><input className="control-input" placeholder="from" onChange={setFromCallback} /></div>
+                        <div className="option toEditor"><input className="control-input" placeholder="to" onChange={setToCallback} /></div>
                     </>
                     : null
                 }
