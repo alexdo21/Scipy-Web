@@ -1,18 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOMClient from 'react-dom/client';
 import App from './App';
 import "./index.css"
 import reportWebVitals from './reportWebVitals';
 
 import { MathJaxContext } from "better-react-mathjax"
 
-ReactDOM.render(
+const container = document.getElementById("root");
+const root = ReactDOMClient.createRoot(container);
+root.render(
   <React.StrictMode>
     <MathJaxContext>
       <App />
     </MathJaxContext>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
