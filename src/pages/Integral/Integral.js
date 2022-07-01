@@ -44,9 +44,9 @@ function Integral({headerTitleCallback}) {
                         selectedPage="integral"
                         selectedType={selectedType} setSelectedTypeCallback={(value) => setSelectedType(value)}
                         expr={expr} setExprCallback={(event) => setExpr(event.target.value)}
-                        wrt={wrt} setWrtCallback={(event) => setWrt(event.target.value)}
-                        from={from} setFromCallback={(event) => setFrom(event.target.value)}
-                        to={to} setToCallback={(event) => setTo(event.target.value)}
+                        setWrtCallback={(event) => setWrt(event.target.value)}
+                        setFromCallback={(event) => setFrom(event.target.value)}
+                        setToCallback={(event) => setTo(event.target.value)}
                     />
                     <SolveButton buttonTitle="Integrate" handleSolveCallback={handleIntegrate} />
                 </div>

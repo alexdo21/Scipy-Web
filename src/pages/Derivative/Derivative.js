@@ -43,8 +43,8 @@ function Derivative({headerTitleCallback}) {
                         selectedPage="derivative"
                         selectedType={selectedType} setSelectedTypeCallback={(value) => setSelectedType(value)}
                         expr={expr} setExprCallback={(event) => setExpr(event.target.value)}
-                        wrt={wrt} setWrtCallback={(event) => setWrt(event.target.value)}
-                        atValue={atValue} setAtValueCallback={(event) => setAtValue(event.target.value)}
+                        setWrtCallback={(event) => setWrt(event.target.value)}
+                        setAtValueCallback={(event) => setAtValue(event.target.value)}
                     />
                     <SolveButton buttonTitle="Derive" handleSolveCallback={handleDerive} />
                 </div>

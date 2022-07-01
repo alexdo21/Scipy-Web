@@ -5,10 +5,10 @@ function ControlPanel({
     selectedPage,
     selectedType, setSelectedTypeCallback, 
     expr, setExprCallback, 
-    wrt, setWrtCallback, 
-    atValue, setAtValueCallback, 
-    from, setFromCallback, 
-    to, setToCallback}) {
+    setWrtCallback, 
+    setAtValueCallback, 
+    setFromCallback, 
+    setToCallback}) {
 
     return (
         <div className="control-panel-wrapper">
