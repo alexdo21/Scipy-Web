@@ -23,7 +23,7 @@ function Determinant({headerTitleCallback}) {
             let matrixLatex = getMatrixLatex(matrix)
             setDeterminantProblem(matrixLatex)
             fetchMatrixDeterminant(matrix)
-            .then(response => setDeterminantResult(response))
+            .then(response => setDeterminantResult(Number.parseFloat(response).toFixed(2).toString()))
             .catch(errMsg => setDeterminantResult(errMsg))
         }
     }
